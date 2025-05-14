@@ -1,0 +1,23 @@
+name: template-ssl
+
+services:
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+    volumes:
+      - ./volumes/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../proxy/volumes/certificate/certbot:/var/www/certbot:ro
+
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./volumes/scripts/entrypoint.sh:/scripts/entrypoint.sh:ro
+      - ../proxy/volumes/certificate/certbot:/var/www/certbot/:rw
+      - ../proxy/volumes/certificate/letsencrypt:/etc/letsencrypt:rw
+      - ../proxy/volumes/dsa:/etc/dsa:rw
+    entrypoint: /scripts/entrypoint.sh
+    depends_on:
+      - nginx

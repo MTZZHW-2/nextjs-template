@@ -1,0 +1,22 @@
+name: template-proxy
+
+services:
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./volumes/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./volumes/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./volumes/nginx/ssl-params.conf:/etc/nginx/snippets/ssl-params.conf:ro
+      - ./volumes/dsa/dhparam.pem:/etc/nginx/ssl/dhparam.pem:ro
+      - ./volumes/certificate/certbot:/var/www/certbot:ro
+      - ./volumes/certificate/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - template-network
+
+networks:
+  template-network:
+    external: true

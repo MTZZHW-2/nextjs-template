@@ -1,0 +1,36 @@
+name: template
+
+services:
+  db:
+    image: postgres:17
+    restart: always
+    env_file:
+      - ../.env
+      - ../.env.development
+    volumes:
+      - ./db/volumes/data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -d template -U root']
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  object-storage:
+    image: minio/minio:latest
+    restart: always
+    command: server /data --console-address ":9001"
+    env_file:
+      - ../.env
+      - ../.env.development
+    volumes:
+      - ./object-storage/volumes/data:/data
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:9000/minio/health/live']
+      interval: 30s
+      timeout: 20s
+      retries: 3

@@ -34,3 +34,12 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
+
+  onlyoffice:
+    image: onlyoffice/documentserver:latest
+    restart: always
+    volumes:
+      # - ./onlyoffice/volumes/config/local.json:/etc/onlyoffice/documentserver/local.json
+      - ./onlyoffice/volumes/logs:/var/log/onlyoffice
+    ports:
+      - '8080:80'

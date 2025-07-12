@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+/docker/db/volumes/data
+/docker/object-storage/volumes/data
+
+# next.js
+/.next/
+
+# misc
+.DS_Store
+
+# debug
+.pnpm-debug.log*
+
+# typescript
+next-env.d.ts
+
+# prisma client
+/server/model/client

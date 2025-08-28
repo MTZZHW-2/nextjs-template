@@ -1,0 +1,24 @@
+{
+  "recommendations": [
+    "codeinchinese.englishchinesedictionary",
+    "cweijan.vscode-database-client2",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "intellsmi.comment-translate",
+    "mhutchie.git-graph",
+    "ms-ceintl.vscode-language-pack-zh-hans",
+    "pkief.material-icon-theme",
+    "streetsidesoftware.code-spell-checker",
+    "wangzy.sneak-mark",
+    // 项目必选
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-edgedevtools.vscode-edge-devtools",
+    // 项目可选
+    "ahmadalli.vscode-nginx-conf",
+    "bradlc.vscode-tailwindcss",
+    "github.vscode-github-actions",
+    "ms-azuretools.vscode-docker",
+    "prisma.prisma"
+  ]
+}

@@ -1,0 +1,10 @@
+deploy
+node_modules
+
+.git
+.next
+!.next/static
+!.next/standalone
+
+.dockerignore
+README.md
